@@ -71,13 +71,6 @@ class _TestLogicState extends State<TestLogic> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.delete,
-                              size: 24.0,
-                            ),
-                          ),
-                          IconButton(
                             onPressed: () {
                               showDialog<void>(
                                 context: context,
@@ -88,7 +81,7 @@ class _TestLogicState extends State<TestLogic> {
                                     content: const SingleChildScrollView(
                                       child: ListBody(
                                         children: <Widget>[
-                                          Text('Your order was placed!'),
+                                          Text('Beneran mau di hapus?'),
                                         ],
                                       ),
                                     ),
@@ -98,9 +91,83 @@ class _TestLogicState extends State<TestLogic> {
                                           backgroundColor: Colors.blueGrey,
                                         ),
                                         onPressed: () {
+                                          catatan.removeAt(index);
+                                          setState(() {});
                                           Navigator.pop(context);
                                         },
-                                        child: const Text("Ok"),
+                                        child: const Text(
+                                          "Ok",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 24.0,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text("Edit Catatan Anda"),
+                                    content: SizedBox(
+                                      width: double.maxFinite,
+                                      child: ListView(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 5.0, horizontal: 10),
+                                        shrinkWrap: true,
+                                        children: [
+                                          const SizedBox(
+                                            height: 20.0,
+                                          ),
+                                          TextFormField(
+                                            controller: judul,
+                                            decoration: const InputDecoration(
+                                              labelText: "judul",
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10.0,
+                                          ),
+                                          TextFormField(
+                                            controller: deskripsi,
+                                            decoration: const InputDecoration(
+                                              labelText: "deskripsi",
+                                              border: OutlineInputBorder(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          List<String> editCatatan = [
+                                            judul.text,
+                                            deskripsi.text
+                                          ];
+                                          catatan[index] = editCatatan.toList();
+                                          setState(() {});
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text("Save"),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text("Cancel"),
                                       ),
                                     ],
                                   );

@@ -10,6 +10,7 @@ class HomePageView extends StatefulWidget {
 
   Widget build(context, HomePageController controller) {
     controller.view = this;
+
     return DefaultTabController(
       length: 4,
       initialIndex: controller.selectedIndex,
@@ -19,12 +20,6 @@ class HomePageView extends StatefulWidget {
           children: [
             const AddNotesPage(),
             const TestLogic(),
-            Container(
-              color: Colors.blue,
-            ),
-            Container(
-              color: Colors.purple,
-            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -43,18 +38,6 @@ class HomePageView extends StatefulWidget {
                 Icons.list,
               ),
               label: "Order",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite,
-              ),
-              label: "Favorite",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              label: "User",
             ),
           ],
         ),
