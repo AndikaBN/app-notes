@@ -1,6 +1,7 @@
 // ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wtc_notes/module/home_page/view/detail_gabut_page.dart';
 
 class TestLogic extends StatefulWidget {
   const TestLogic({Key? key}) : super(key: key);
@@ -36,152 +37,166 @@ class _TestLogicState extends State<TestLogic> {
             shrinkWrap: true,
             physics: const ScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              return Card(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  side: BorderSide(
-                    color: Colors.black,
-                    width: 3,
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailGabutPage(
+                        judul: catatan[index][0],
+                        deskripsi: catatan[index][1],
+                      ),
+                    ),
+                  );
+                },
+                child: Card(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    side: BorderSide(
+                      color: Colors.black,
+                      width: 3,
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        catatan[index][0],
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          catatan[index][0],
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      Text(
-                        catatan[index][1],
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(height: 20.0),
+                        Text(
+                          catatan[index][1],
+                          style: const TextStyle(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              showDialog<void>(
-                                context: context,
-                                barrierDismissible: true,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: const Text('Info'),
-                                    content: const SingleChildScrollView(
-                                      child: ListBody(
-                                        children: <Widget>[
-                                          Text('Beneran mau di hapus?'),
-                                        ],
-                                      ),
-                                    ),
-                                    actions: <Widget>[
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          catatan.removeAt(index);
-                                          setState(() {});
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text(
-                                          "Ok",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                        const SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                showDialog<void>(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Info'),
+                                      content: const SingleChildScrollView(
+                                        child: ListBody(
+                                          children: <Widget>[
+                                            Text('Beneran mau di hapus?'),
+                                          ],
                                         ),
                                       ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                              size: 24.0,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text("Edit Catatan Anda"),
-                                    content: SizedBox(
-                                      width: double.maxFinite,
-                                      child: ListView(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5.0, horizontal: 10),
-                                        shrinkWrap: true,
-                                        children: [
-                                          const SizedBox(
-                                            height: 20.0,
+                                      actions: <Widget>[
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.blueGrey,
                                           ),
-                                          TextFormField(
-                                            controller: judul,
-                                            decoration: const InputDecoration(
-                                              labelText: "judul",
-                                              border: OutlineInputBorder(),
+                                          onPressed: () {
+                                            catatan.removeAt(index);
+                                            setState(() {});
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text(
+                                            "Ok",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 10.0,
-                                          ),
-                                          TextFormField(
-                                            controller: deskripsi,
-                                            decoration: const InputDecoration(
-                                              labelText: "deskripsi",
-                                              border: OutlineInputBorder(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          List<String> editCatatan = [
-                                            judul.text,
-                                            deskripsi.text
-                                          ];
-                                          catatan[index] = editCatatan.toList();
-                                          setState(() {});
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text("Save"),
-                                      ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text("Cancel"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.edit,
-                              size: 24.0,
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                size: 24.0,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            IconButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text("Edit Catatan Anda"),
+                                      content: SizedBox(
+                                        width: double.maxFinite,
+                                        child: ListView(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 5.0, horizontal: 10),
+                                          shrinkWrap: true,
+                                          children: [
+                                            const SizedBox(
+                                              height: 20.0,
+                                            ),
+                                            TextFormField(
+                                              controller: judul,
+                                              decoration: const InputDecoration(
+                                                labelText: "judul",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10.0,
+                                            ),
+                                            TextFormField(
+                                              controller: deskripsi,
+                                              decoration: const InputDecoration(
+                                                labelText: "deskripsi",
+                                                border: OutlineInputBorder(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            List<String> editCatatan = [
+                                              judul.text,
+                                              deskripsi.text
+                                            ];
+                                            catatan[index] =
+                                                editCatatan.toList();
+                                            setState(() {});
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Save"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Cancel"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                size: 24.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

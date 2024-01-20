@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 
-class DetailGabutPage extends StatefulWidget {
-  const DetailGabutPage({Key? key}) : super(key: key);
+class DetailGabutPage extends StatelessWidget {
+  final String judul;
+  final String deskripsi;
+  const DetailGabutPage({
+    Key? key,
+    required this.judul,
+    required this.deskripsi,
+  }) : super(key: key);
 
-  @override
-  State<DetailGabutPage> createState() => _DetailGabutPageState();
-}
-
-class _DetailGabutPageState extends State<DetailGabutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,28 @@ class _DetailGabutPageState extends State<DetailGabutPage> {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: [],
+            children: [
+              Center(
+                child: Text(
+                  judul,
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Center(
+                child: Text(
+                  deskripsi,
+                  style: TextStyle(
+                    fontSize: 50.0,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
