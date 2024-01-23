@@ -1,5 +1,7 @@
-import 'package:wtc_notes/core.dart';
 import 'package:flutter/material.dart';
+import 'package:wtc_notes/add_notes.dart';
+
+import 'home_page_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      navigatorKey: Get.navigatorKey,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           elevation: 9,
         ),
       ),
-      home: const HomePageView(),
+      home: HomeView(),
     );
   }
 }
