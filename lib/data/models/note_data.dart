@@ -4,13 +4,13 @@ class Note {
   final int? id;
   final String title;
   final String content;
-  final DateTime creatAt;
+  final DateTime createAt;
 
   Note({
     this.id,
     required this.title,
     required this.content,
-    required this.creatAt,
+    required this.createAt,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,7 +18,7 @@ class Note {
       'id': id,
       'title': title,
       'content': content,
-      'creatAt': creatAt.millisecondsSinceEpoch,
+      'createAt': createAt.millisecondsSinceEpoch,
     };
   }
 
@@ -27,7 +27,7 @@ class Note {
       id: map['id']?.toInt(),
       title: map['title'] ?? '',
       content: map['content'] ?? '',
-      creatAt: DateTime.fromMillisecondsSinceEpoch(int.parse(map['creatAt'])),
+      createAt: DateTime.fromMillisecondsSinceEpoch(int.parse(map['createAt'])),
     );
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wtc_notes/add_notes.dart';
 
 import 'home_page_view.dart';
 
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
           elevation: 9,
         ),
       ),
-      home: HomeView(),
+      home: const HomeView(),
     );
   }
 }

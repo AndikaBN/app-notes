@@ -26,7 +26,7 @@ class DetailGabutPage extends StatelessWidget {
               Center(
                 child: Text(
                   judul,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -38,7 +38,7 @@ class DetailGabutPage extends StatelessWidget {
               Center(
                 child: Text(
                   deskripsi,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 50.0,
                   ),
                 ),

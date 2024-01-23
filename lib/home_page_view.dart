@@ -25,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
                 text: "With SQFLite",
               ),
               Tab(
-                text: "With Local Storage",
+                text: "With Local Variable",
               ),
             ],
           ),

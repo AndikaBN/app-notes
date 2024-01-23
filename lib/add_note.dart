@@ -2,8 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:wtc_notes/data/datasources/local_datasources.dart';
-import 'package:wtc_notes/home_page_view.dart';
-
 import 'data/models/note_data.dart';
 
 class AddNotePage extends StatefulWidget {
@@ -79,7 +77,7 @@ class _AddNotePageState extends State<AddNotePage> {
                     Note note = Note(
                       title: titleController.text,
                       content: contentController.text,
-                      creatAt: DateTime.now(),
+                      createAt: DateTime.now(),
                     );
                     LocalDataSources().insertNote(note);
                     titleController.clear();
